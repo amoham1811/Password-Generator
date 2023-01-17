@@ -128,6 +128,21 @@ var userSelections = {
     return this;
   } 
 }
+// Function to count number of true choices in user selection
+function countUserChoices(obj) {
+  var count = 0;
+  for (var choice in obj) {
+      if (obj.hasOwnProperty(choice) && obj[choice] === true) {
+          count++
+      }
+  }
+  return count;
+}
+
+// Function to generate a random number
+function getRandomNumber(numb){
+  return Math.floor((Math.random() * numb))
+}
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -142,6 +157,27 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   var passwordOptions = getPasswordOptions ();
+  var counter = countUserChoices(passwordOptions);
+  alert(counter);
+  var optionArr = [];
+  var Password = [];
+  var count = 0;
+  if (passwordOptions.isLowerCase){
+      optionArr[count] = "lowerCasedCharacters";
+      count++
+    }
+  if (passwordOptions.isUpperCase){
+      optionArr[count] = "upperCasedCharacters";
+      count++
+  }
+  if (passwordOptions.isNumber){
+    optionArr[count] = "numericCharacters";
+    count++
+  }
+  if (passwordOptions.isSpecial){
+    optionArr[count] = "specialCharacters";
+  }
+  alert(optionArr);
 }
 
 // Get references to the #generate element
