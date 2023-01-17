@@ -152,6 +152,8 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+  var charact = arr[getRandomNumber(arr.length)];
+  return charact;
 }
 
 // Function to generate password with user input
@@ -177,7 +179,27 @@ function generatePassword() {
   if (passwordOptions.isSpecial){
     optionArr[count] = "specialCharacters";
   }
-  alert(optionArr);
+  var randNumb;
+  var ArrName = [];
+  for (i=0;i < passwordOptions.passwordLength;i++){
+    randNumb = getRandomNumber(count);
+    ArrName = optionArr[randNumb];
+    switch(ArrName){
+      case "lowerCasedCharacters":
+          Password[i] = getRandom(lowerCasedCharacters);
+          break;
+      case "upperCasedCharacters":
+          Password[i] = getRandom(upperCasedCharacters);    
+          break;
+      case "mumericCharacters":
+          Password[i] = getRandom(numericCharacters);
+          break;
+      default:
+          Password[i] = getRandom(specialCharacters);    
+      }
+    // console.log(Password[i]);
+  }
+  return Password;
 }
 
 // Get references to the #generate element
@@ -187,7 +209,7 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
