@@ -100,7 +100,7 @@ var userSelections = {
   isSpecial: false,
   Ask_User: function(){
     while (!validate){
-        
+      //acquire password length and validate  
       if (this.passwordLength < 10 || this.passwordLength > 64){
         this.passwordLength = prompt("How many characters would you like in the password ?");
         
@@ -111,7 +111,8 @@ var userSelections = {
           this.passwordLength = parseInt(this.passwordLength); 
         }
       } 
-        
+      
+      //acquire user character type selection and validate
       if (this.passwordLength >= 10 && this.passwordLength <= 64){
           this.isUpperCase = confirm("Are Uppercase letters allowed ?");
           this.isLowerCase = confirm("Are Lowercase letters allowed ?");
@@ -128,16 +129,16 @@ var userSelections = {
     return this;
   } 
 }
-// Function to count number of true choices in user selection
-function countUserChoices(obj) {
-  var count = 0;
-  for (var choice in obj) {
-      if (obj.hasOwnProperty(choice) && obj[choice] === true) {
-          count++
-      }
-  }
-  return count;
-}
+// Function to count number of true choices in user selection - Not required
+// function countUserChoices(obj) {
+//   var count = 0;
+//   for (var choice in obj) {
+//       if (obj.hasOwnProperty(choice) && obj[choice] === true) {
+//           count++
+//       }
+//   }
+//   return count;
+// }
 
 // Function to generate a random number
 function getRandomNumber(numb){
@@ -159,11 +160,13 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   var passwordOptions = getPasswordOptions ();
-  var counter = countUserChoices(passwordOptions);
-  alert(counter);
+  // var counter = countUserChoices(passwordOptions);
+  
+  // alert(counter);
   var optionArr = [];
   var Password = [];
   var count = 0;
+  //construct array of user selected character types
   if (passwordOptions.isLowerCase){
       optionArr[count] = "lowerCasedCharacters";
       count++
@@ -181,6 +184,7 @@ function generatePassword() {
   }
   var randNumb;
   var ArrName = [];
+  //construct password by randomly selecting character types and characters
   for (i=0;i < passwordOptions.passwordLength;i++){
     randNumb = getRandomNumber(count);
     ArrName = optionArr[randNumb];
@@ -209,7 +213,8 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-  passwordText.value = password;
+  
+  passwordText.value = password.join(' '); //repalce commas between characters with space
 }
 
 // Add event listener to generate button
