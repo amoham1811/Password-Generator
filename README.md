@@ -18,7 +18,7 @@ The user must select at least one of the four available character types. The use
 ## Processing
 Following the user input. The application randomly selects a character type from user selection and then a random character is chosen. This process is repeated until the number of character are selected specified by the user. Finally, this collection of characters are formatted and displayed on the password splash screen. The following image shows an example of password being displayed.
 
-![PasswordDisplay](.\assets\images\HtmlFinancialAnalysis.jpg)
+![PasswordDisplay](./assets/images/passworddisplay.jpg)
 
 ## Application
 Click the link below to view the application.
